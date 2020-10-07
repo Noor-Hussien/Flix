@@ -26,7 +26,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource,UITableViewD
         let task = session.dataTask(with: request) { (data, response, error) in
            // This will run when the network request returns
            if let error = error {
-              print(error.localizedDescription)
+              //print(error.localizedDescription)
            } else if let data = data {
               let dataDictionary = try!
                 JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
@@ -63,28 +63,45 @@ class MoviesViewController: UIViewController, UITableViewDataSource,UITableViewD
         let movie = movies[indexPath.row] // accessing the movie array by index
         let title = movie["title"] as! String // accessing dictionary using key and cast to string
         let synopsis = movie["overview"] as! String // get synopsis
+        cell.titleLabel!.text = title
+        cell.synopsisLabel.text = synopsis
         
-        let posterPath = movie["backdrop_path"] as! String
+        let posterPath = movie["poster_path"] as! String // it was backdrop_path before 
         let baseUrl = "https://image.tmdb.org/t/p/w185"
         let posterUrl = URL(string: baseUrl +
                                 posterPath)
         
-        cell.titleLabel!.text = title
-        cell.synopsisLabel.text = synopsis
+        
         cell.posterView.af_setImage(withURL: posterUrl!)
         
         return cell
         
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        print("Loading up the details screen")
+        // find the selected movie
+        let cell = sender as! UITableViewCell // the being tapped on
+        let indexPath = tableView.indexPath(for: cell)! // the index of that cell
+        
+        let movie = movies[indexPath.row]  // access the array movie
+        
+        // pass the selected movie to the details View controller
+        // The reason it is casted is because it gives a generic UIViewController and we want MovieController
+        let detailsviewController = segue.destination as!
+            MovieDetailsViewController
+        detailsviewController.movie = movie // refers to the let movie
+        
+        tableView.deselectRow(at: indexPath, animated: true) // cell not selected anymore
+
     }
-    */
+
 
 }
