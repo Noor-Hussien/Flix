@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -85,22 +86,49 @@
         <scene sceneID="yGi-V4-0dI">
             <objects>
                 <viewController id="PNd-Mp-ZVf" customClass="MovieGridViewController" customModule="Flix" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="iuq-Oc-ERz">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gYD-cH-Fz8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Ete-8d-CWz"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="Fz2-hY-HzD">
+                            <size key="itemSize" width="200" height="180"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieGridCell" id="3C1-2m-3WH" customClass="MovieGridCell" customModule="Flix" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="199" height="232"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Kkm-FG-2S0">
+                                    <rect key="frame" x="0.0" y="0.0" width="199" height="232"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CI1-B9-c1X">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="199" height="232"/>
+                                <connections>
+                                    <outlet property="posterView" destination="CI1-B9-c1X" id="SeO-eO-aU2"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                    </collectionView>
                     <navigationItem key="navigationItem" title="Superhero" id="saX-0d-BN2"/>
+                    <connections>
+                        <outlet property="collectionView" destination="gYD-cH-Fz8" id="ELz-F8-3p7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N1W-JW-RuG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1187" y="609"/>
+            <point key="canvasLocation" x="1186.9565217391305" y="608.70535714285711"/>
         </scene>
         <!--Movie Details View Controller-->
         <scene sceneID="IeD-Be-alo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ybX-ce-WGB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="ISE-eG-2Cy" customClass="MovieDetailsViewController" customModule="Flix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZfE-hE-Dqr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -140,6 +168,7 @@
                         <outlet property="titleLabel" destination="myS-ZQ-dCv" id="MGa-Ie-ARI"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ybX-ce-WGB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-984" y="1485"/>
         </scene>
