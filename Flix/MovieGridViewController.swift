@@ -21,6 +21,14 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource,UICo
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+    
+        layout.minimumLineSpacing = 40 // space in between rows
+        layout.minimumInteritemSpacing = 4
+        
+        let width = (view.frame.size.width  -  layout.minimumInteritemSpacing * 2) / 3 // three posters
+        layout.itemSize = CGSize(width: width, height:width*3 / 2) // heigh is 1.5 tall
+        
         let url = URL(string: "https://api.themoviedb.org/3/movie/297762/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
